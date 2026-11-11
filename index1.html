@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sườn Bài 6: Tiếp cận từ Thi ca Triết học và Biểu tượng học</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #050714;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(112, 0, 255, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 212, 255, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 10, 35, 0.95) 0%, #03050c 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            line-height: 1.8;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng nền sao vũ trụ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 190px, rgba(168, 85, 247, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 310px 250px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 450px 120px, rgba(56, 189, 248, 0.9), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 500px 500px;
+            opacity: 0.65;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Card */
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 35px 30px;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(112, 0, 255, 0.15);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 22px;
+            line-height: 1.35;
+        }
+
+        .topic-title {
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 18px 22px;
+            border-radius: 14px;
+            border-left: 4px solid #a855f7;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .topic-title strong {
+            color: #38bdf8;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(168, 85, 247, 0.35);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #a855f7, #38bdf8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            flex-shrink: 0;
+        }
+
+        .chapter {
+            margin-bottom: 22px;
+        }
+
+        .chapter:last-child {
+            margin-bottom: 0;
+        }
+
+        .chapter-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            color: #cbd5e1;
+        }
+
+        li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-size: 0.85rem;
+            top: 1px;
+        }
+
+        .sub-list {
+            margin-top: 8px;
+        }
+
+        .sub-list li {
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #94a3b8;
+        }
+
+        .sub-list li::before {
+            content: '•';
+            color: #38bdf8;
+            font-size: 1.1rem;
+            top: -1px;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <span class="badge">Đề tài Tiểu luận</span>
+            <h1>SƯỜN BÀI 6: Tiếp cận từ Thi ca Triết học và Biểu tượng học</h1>
+            <div class="topic-title">
+                <strong>Tên đề tài gợi ý:</strong> Hình tượng "Mộng" trong thi ca Thiền học Thích Thanh Từ và các ẩn dụ huyễn ảo trong triết học Śaṅkarācārya.
+            </div>
+        </header>
+
+        <!-- Phần I: Mở bài -->
+        <section class="section-card">
+            <div class="section-header">
+                <div class="section-icon">I</div>
+                <h2>MỞ BÀI</h2>
+            </div>
+            <ul>
+                <li>Vai trò của thơ ca và ngôn ngữ ẩn dụ trong việc diễn đạt thực tại siêu việt.</li>
+            </ul>
+        </section>
+
+        <!-- Phần II: Nội dung chính -->
+        <section class="section-card">
+            <div class="section-header">
+                <div class="section-icon">II</div>
+                <h2>NỘI DUNG CHÍNH</h2>
+            </div>
+
+            <!-- Chương 1 -->
+            <div class="chapter">
+                <div class="chapter-title">Chương 1: Hệ thống ẩn dụ trong Advaita Vedānta</div>
+                <ul class="sub-list">
+                    <li>Biểu tượng Sợi dây - Con rắn (Rajju-sarpa).</li>
+                    <li>Biểu tượng Trăng trong nước (Candra-māyā), Giấc mộng và Bọt nước.</li>
+                </ul>
+            </div>
+
+            <!-- Chương 2 -->
+            <div class="chapter">
+                <div class="chapter-title">Chương 2: Cấu trúc biểu tượng "Mộng" trong bài kệ của Thiền sư Thích Thanh Từ</div>
+                <ul class="sub-list">
+                    <li>Biểu tượng Thân mộng, Cảnh mộng, Khách mộng, Lời mộng.</li>
+                    <li>Nụ cười Thiền: "Cười vỡ mộng" - Nụ cười ngộ nhập.</li>
+                </ul>
+            </div>
+
+            <!-- Chương 3 -->
+            <div class="chapter">
+                <div class="chapter-title">Chương 3: So sánh giá trị nghệ thuật và truyền tải triết lý</div>
+                <ul class="sub-list">
+                    <li>Ngôn ngữ biểu tượng như là "ngón tay chỉ mặt trăng" (phương tiện giáo hóa).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Phần III: Kết bài -->
+        <section class="section-card">
+            <div class="section-header">
+                <div class="section-icon">III</div>
+                <h2>KẾT BÀI</h2>
+            </div>
+            <ul>
+                <li>Đánh giá sức mạnh gợi mở tâm linh của bài kệ "Mộng".</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>© Giao diện xem tiểu luận trực tuyến • Cosmic Theme</p>
+        </footer>
+    </div>
+
+</body>
+</html>

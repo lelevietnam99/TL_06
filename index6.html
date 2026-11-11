@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần III: Kết Bài & IV: Tài Liệu Tham Khảo - Sườn Bài 6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #050714;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(112, 0, 255, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 212, 255, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 10, 35, 0.95) 0%, #03050c 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            line-height: 1.85;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng nền sao vũ trụ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 190px, rgba(168, 85, 247, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 310px 250px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 450px 120px, rgba(56, 189, 248, 0.9), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 500px 500px;
+            opacity: 0.65;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Essay Card */
+        .essay-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 45px 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(112, 0, 255, 0.12);
+        }
+
+        /* Section Header */
+        .section-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        h1.chapter-main-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            line-height: 1.35;
+        }
+
+        h2.section-sub-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin: 35px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Content Paragraphs */
+        p.content-p {
+            font-size: 1.02rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Superscript styling for footnote references */
+        sup {
+            color: #38bdf8;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-left: 2px;
+            cursor: pointer;
+        }
+
+        /* Lists */
+        ul.custom-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 22px;
+        }
+
+        ul.custom-list > li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 16px;
+            color: #cbd5e1;
+            font-size: 1.02rem;
+        }
+
+        ul.custom-list > li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-size: 0.85rem;
+            top: 2px;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: rgba(10, 15, 30, 0.7);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: 20px;
+            padding: 28px 22px;
+            margin: 35px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .summary-box-title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            color: #38bdf8;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: rgba(112, 0, 255, 0.25);
+            color: #38bdf8;
+            padding: 14px 18px;
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.5);
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Footnotes Section */
+        .footnotes-section {
+            margin-top: 45px;
+            padding-top: 22px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footnotes-header {
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footnote-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footnote-item {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            line-height: 1.65;
+        }
+
+        .footnote-item::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        /* Reference Cards */
+        .ref-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .ref-item {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 0.98rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .ref-item:hover {
+            transform: translateX(4px);
+            border-color: rgba(168, 85, 247, 0.35);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 35px;
+        }
+
+        @media (max-width: 600px) {
+            .essay-card {
+                padding: 25px 20px;
+            }
+            h1.chapter-main-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- III. KẾT BÀI -->
+        <article class="essay-card">
+            <span class="section-badge">Phần Kết Thúc • Sườn Bài 6</span>
+            <h1 class="chapter-main-title">III. KẾT BÀI</h1>
+
+            <!-- 1. Tổng kết nội dung -->
+            <section>
+                <h2 class="section-sub-title">1. Tổng kết Nội dung và Khái quát các Kết quả Nghiên cứu</h2>
+                
+                <p class="content-p">
+                    Qua việc giải mã thi ca triết học và hệ thống biểu tượng huyễn ảo giữa hai truyền thống tư tưởng lớn của phương Đông, bài tiểu luận đã hoàn thành việc chỉ ra vai trò của ngôn ngữ ẩn dụ như một chiếc cầu phương tiện (Upāya / "ngón tay chỉ mặt trăng") nhằm giúp con người vượt lên khỏi sự trói buộc của lý trí khái niệm để thấu suốt bản chất huyễn mộng của thực tại hiện tượng.
+                </p>
+
+                <p class="content-p">
+                    Sự đối chiếu giữa các ẩn dụ triết học của đại sư Śaṅkarācārya trong Advaita Vedānta và mạng lưới biểu tượng thi ca qua bài kệ “Mộng” của Thiền sư Thích Thanh Từ đã mang lại những kết luận khoa học cốt tủy:
+                </p>
+
+                <p class="content-p">
+                    Thứ nhất, về hệ thống ẩn dụ trong Advaita Vedānta: Śaṅkarācārya đã xây dựng một quần thể ẩn dụ huyễn ảo phong phú (Rajju-sarpa - Sợi dây tưởng con rắn, Candra-māyā - Mặt trăng trong nước, Budbuda - Bọt nước, Svapna - Giấc mộng). Mọi ẩn dụ này đều hướng tới việc bóc tách công năng che đậy (Āvaraṇa) và phóng chiếu (Vikṣepa) của năng lực Māyā, chỉ rõ tính chất Mithyā (huyễn giả) của cõi hiện tượng tương đối (Vyāvahārika-satya / Jagat). Nhờ tri kiến phủ định Neti, Neti, Śaṅkarācārya dồn ép tâm thức đập tan con rắn ảo giác để quy về ngộ nhập Bản thể Đại ngã Bất nhị vĩnh cửu: Aham Brahmāsmi ("Ta chính là Brahman")<sup>11</sup>.
+                </p>
+
+                <p class="content-p">
+                    Thứ hai, về cấu trúc biểu tượng "Mộng" trong Thiền học Thích Thanh Từ: Bài kệ “Mộng” dệt nên một mạng lưới hình tượng đa tầng vô cùng sống động: Thân mộng (thân uẩn duyên hợp gá trọ), Cảnh mộng (thế giới duyên trần sinh diệt), Khách mộng (chúng sinh chìm đắm trong vô minh Avidyā và điên đảo vọng tưởng Vipallāsa), và Lời mộng (ngôn ngữ phương tiện giáo hóa). Bằng công phu phản quang tự kỷ, hành giả thắp sáng Tánh "Biết" chiếu soi (“Biết được mộng”)<sup>12</sup>; từ đó cất lên nụ “Cười vỡ mộng” để đập tan ngã chấp và pháp chấp, bừng tỉnh Tánh giác bản hữu (“Tỉnh cơn mộng”) và mở ra tinh thần Bồ-tát hạnh dấn thân nhập thế vô sở trụ (“Ghi lời mộng, Nhắn khách mộng”).
+                </p>
+
+                <p class="content-p">
+                    Thứ ba, về điểm phân ngả triết học và truyền tải triết lý: Cả hai hệ thống đều sử dụng biểu tượng thi ca như một chiếc cầu mượn tạm để truyền tải Thực tại Bất khả ngôn thuyết (Anirvacanīya / Tánh giác bản hữu). Tuy nhiên, nếu Śaṅkarācārya dùng các ẩn dụ huyễn ảo để phủ định cõi Māyā nhằm khẳng định một Chân ngã Đại ngã vĩnh cửu (Nirguṇa Brahman)<sup>11</sup>, thì Thiền sư Thích Thanh Từ lại đứng vững trên tinh thần Tánh Không Vô ngã (Śūnyatā / Anātman) của Phật giáo Đại thừa. Thiền học Phật giáo phân định sắc nét Vô minh (Avidyā) là nguyên nhân gốc ngầm rỉ (Mūla-kāraṇa) và Điên đảo Vọng tưởng (Vipallāsa) là quả sinh khởi (Phala), tuyệt đối không đồng nhất hai khái niệm để tránh rơi vào sai lầm Hữu quả luận (Sātkāryavāda) của ngoại đạo<sup>13</sup>; từ đó biến cõi mộng thành đạo trường tự tại dấn thân phụng sự chúng sinh.
+                </p>
+
+                <!-- Bảng Tổng Hợp Kết Luận -->
+                <div class="summary-box">
+                    <div class="summary-box-title">TỔNG HỢP HỆ THỐNG BIỂU TƯỢNG VÀ TRUYỀN TẢI TRIẾT LÝ (SƯỜN BÀI 6)</div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>TIÊU CHÍ</th>
+                                    <th>ADVAITA VEDĀNTA (ŚAṄKARĀCĀRYA)</th>
+                                    <th>THIỀN HỌC THÍCH THANH TỪ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>• Hệ thống Biểu tượng:</strong></td>
+                                    <td>Rajju-sarpa, Candra-māyā, Budbuda</td>
+                                    <td>Thân mộng, Cảnh mộng, Khách mộng, Lời mộng</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>• Chức năng Ngôn ngữ:</strong></td>
+                                    <td>Phương tiện giáo hóa Upāya</td>
+                                    <td>Ngón tay chỉ mặt trăng ("Ghi lời mộng")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>• Cơ chế Chuyển hóa:</strong></td>
+                                    <td>Phủ định Neti Neti ➔ Jñāna Bất nhị</td>
+                                    <td>Phản quang tự kỷ ➔ "Biết vọng không theo"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>• Biểu tượng Ngộ nhập:</strong></td>
+                                    <td>Cắn xé ảo ảnh Māyā ➔ Trực nhận Brahman</td>
+                                    <td>Nụ cười ngộ nhập "Cười vỡ mộng"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>• Lập trường Bản thể:</strong></td>
+                                    <td>Đại ngã Bất nhị (Nirguṇa Brahman)</td>
+                                    <td>Tánh Không Vô ngã (Śūnyatā / Anātman)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>• Nhận thức luận nhân quả:</strong></td>
+                                    <td>Đồng nhất ảo ảnh dưới lăng kính Māyā</td>
+                                    <td>Phân định Avidyā (Nhân) & Vipallāsa (Quả)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>• Tinh thần Nhập thế:</strong></td>
+                                    <td>Giải thoát vượt khỏi cõi Māyā</td>
+                                    <td>Bồ-tát hạnh (Ghi lời mộng, Nhắn khách)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Ý nghĩa Triết học -->
+            <section>
+                <h2 class="section-sub-title">2. Đánh Giá Sức Mạnh Gợi Mở Tâm Linh và Giá Trị Mỹ Học của Bài Kệ “Mộng”</h2>
+                <p class="content-p">
+                    Mạng lưới biểu tượng trong bài kệ “Mộng” của Thiền sư Thích Thanh Từ sở hữu một sức mạnh gợi mở tâm linh vượt thời gian và đem lại những giá trị mỹ học ứng dụng vô cùng thiết thực cho con người hiện đại<sup>15</sup>:
+                </p>
+
+                <p class="content-p">
+                    <strong>Sức mạnh Giản dị hóa Triết lý Siêu hình:</strong> Bài kệ chỉ với 32 chữ ngắn gọn đã cô đọng toàn bộ tinh hoa tư tưởng Bát-nhã, Duyên khởi và Thiền tông. Không cần sa vào các thuật ngữ triết học Sanskrit hay logic biện chứng siêu hình phức tạp, bài kệ trao lại một lăng kính quán chiếu trực tiếp, dung dị mà có sức lay động sâu thẳm tâm thức người đọc.
+                </p>
+
+                <p class="content-p">
+                    <strong>Mỹ học Giải thoát và Nghệ thuật Sống Tự tại:</strong> Nụ cười “Cười vỡ mộng” biểu trưng cho thái độ sống tự do đỉnh cao của Thiền học Việt Nam<sup>14</sup>. Nhìn cuộc đời qua biểu tượng “Dạo cảnh mộng” giúp con người cởi bỏ áp lực bám chấp danh lợi, giải tỏa hoàn toàn nỗi lo âu hiện sinh trước bệnh tật và cái chết; từ đó dấn thân phụng sự cống hiến hết mình cho xã hội (“Ghi lời mộng, Nhắn khách mộng”) với một tâm thức thong dong, tự tại ngay giữa lòng thực tại hiện tiền<sup>15</sup>.
+                </p>
+            </section>
+
+            <!-- 3. Lời kết -->
+            <section>
+                <h2 class="section-sub-title">3. Lời kết</h2>
+                <p class="content-p">
+                    Tóm lại, cả hệ thống ẩn dụ huyễn ảo của Śaṅkarācārya và cấu trúc biểu tượng thi ca qua bài kệ “Mộng” của Thiền sư Thích Thanh Từ đều đại diện cho những tuyệt tác về mặt tư tưởng và mỹ học tâm linh phương Đông. Nếu Advaita Vedānta dùng chiếc cầu ẩn dụ để đưa tâm thức trở về hòa nhập với Đấng Đại ngã Bất nhị vĩnh cửu<sup>11</sup>, thì bài kệ “Mộng” của Thiền sư Thích Thanh Từ lại đại diện cho bản sắc Thiền học Trúc Lâm Yên Tử—dung dị, trực tiếp, giàu lòng từ bi và mang tính thực hành sâu sắc<sup>14</sup>. Qua bài kệ, Thiền sư đã trao lại cho mỗi người một ngọn đèn Tánh giác chiếu soi, để ai cũng có thể tự cởi bỏ giấc mộng vô minh ngàn đời, cất lên nụ cười “Cười vỡ mộng” và thong dong bước đi tự tại giữa cõi đời hiện tại<sup>15</sup>.
+                </p>
+            </section>
+
+            <!-- Footnotes -->
+            <div class="footnotes-section">
+                <div class="footnotes-header">
+                    <span>📌 CHÚ THÍCH & TRÍCH DẪN NGUỒN (FOOTNOTES CHO PHẦN KẾT BÀI - SƯỜN BÀI 6)</span>
+                </div>
+                <ul class="footnote-list">
+                    <li class="footnote-item" data-num="11">
+                        Śaṅkarācārya, Vivekacūḍāmaṇi, Kārikā 230–235; đối chiếu bài giảng "3. Buổi học ngày 21-9-2026.mp3" & "2. Buổi 2 (ngày 18-01-2026).mp3" (Tóm lược mệnh đề bản thể luận Advaita Vedānta: "Brahman satyam jagat mithyā, jīvo brahmaiva nāparaḥ").
+                    </li>
+                    <li class="footnote-item" data-num="12">
+                        Thiền sư Thích Thanh Từ (1997), Bí quyết tu thiền, NXB Tôn Giáo, Hà Nội, tr. 50–56; đối chiếu bài giảng "1. Buổi 1 (18-01-2026).mp3" (Tánh giác bản hữu và công phu nhận diện "Biết được mộng" để chuyển hóa vọng tưởng).
+                    </li>
+                    <li class="footnote-item" data-num="13">
+                        Thích Chơn Thiện (1999), Pāli Phật học Đại cương, NXB Tôn Giáo, Hà Nội, tr. 102–110; đối chiếu bài giảng "4b. Buổi học ngày 23-9-2026.mp3" & "4a. Buổi học ngày 23-9-2026.mp3" (Ranh giới triết học giữa học thuyết Đại ngã Ātman/Brahman và lý thuyết Vô ngã - Tánh Không Duyên khởi Anātman / Śūnyatā; phê bình việc đồng nhất nhân quả dẫn đến Hữu quả luận Sātkāryavāda).
+                    </li>
+                    <li class="footnote-item" data-num="14">
+                        Thiền sư Thích Thanh Từ (2005), Thiền sư Việt Nam, NXB Tôn Giáo, Hà Nội, tr. 120–125; đối chiếu bài giảng "3. Buổi học ngày 21-9-2026.mp3" (Bản sắc mỹ học Thiền Trúc Lâm Yên Tử qua bài kệ "Mộng").
+                    </li>
+                    <li class="footnote-item" data-num="15">
+                        Viện Triết học (2004), Lịch sử Triết học Phương Đông, NXB Chính trị Quốc gia, Hà Nội, tr. 335–340; đối chiếu bài giảng "2. Buổi học ngày 16-9-2026.mp3" & "1. Buổi 1 (18-01-2026).mp3" (Sức gợi mở tâm linh và giá trị mỹ học ứng dụng của bài kệ "Mộng" cho con người hiện đại).
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- IV. TÀI LIỆU THAM KHẢO -->
+        <article class="essay-card">
+            <span class="section-badge">Thư Mục Nguồn</span>
+            <h1 class="chapter-main-title">IV. TÀI LIỆU THAM KHẢO</h1>
+
+            <!-- Nhóm 1 -->
+            <section>
+                <h2 class="section-sub-title">1. Bài giảng & Hồ sơ Học thuật Chuyên ngành (Nguồn Nội dung Giảng dạy)</h2>
+                <div class="ref-list">
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "1. Buổi 1 (18-01-2026).mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "2. Buổi 2 (ngày 18-01-2026).mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "2. Buổi học ngày 16-9-2026.mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "3. Buổi 3 (ngày 31-3-2026).mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "3. Buổi học ngày 21-9-2026.mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "4a. Buổi học ngày 23-9-2026.mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "4b. Buổi học ngày 23-9-2026.mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "5. Buổi 5 (7-4-2026).mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "6. Buổi 6 (8-4-2026).mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "7. Buổi 7 (14-4-2026).mp3", Học viện Phật giáo.</div>
+                    <div class="ref-item">Bài giảng Chuyên đề Triết học Ấn Độ (2026), "8. Buổi 8 (16-4-2026).mp3", Học viện Phật giáo.</div>
+                </div>
+            </section>
+
+            <!-- Nhóm 2 -->
+            <section>
+                <h2 class="section-sub-title">2. Văn học Thiền học & Kinh điển Phật giáo</h2>
+                <div class="ref-list">
+                    <div class="ref-item">Thiền sư Thích Thanh Từ (1980), Bài kệ "Mộng", khắc tại Thiền viện Chân Không, Bà Rịa - Vũng Tàu (sáng tác tháng 7/1980).</div>
+                    <div class="ref-item">Thiền sư Thích Thanh Từ (1997), Bí quyết tu thiền, NXB Tôn Giáo, Hà Nội.</div>
+                    <div class="ref-item">Thiền sư Thích Thanh Từ (2005), Thiền sư Việt Nam, NXB Tôn Giáo, Hà Nội.</div>
+                    <div class="ref-item">Thích Minh Châu (dịch) (2012), Kinh Trung Bộ (Majjhima Nikāya), Tập I & II, NXB Tôn Giáo, Hà Nội.</div>
+                    <div class="ref-item">Thích Thanh Từ (giảng giải) (2008), Kinh Kim Cang Bát Nhã Giảng Giải, NXB Tôn Giáo, Hà Nội.</div>
+                </div>
+            </section>
+
+            <!-- Nhóm 3 -->
+            <section>
+                <h2 class="section-sub-title">3. Kinh điển & Tác phẩm Triết học Ấn Độ (Advaita Vedānta & Biểu tượng học)</h2>
+                <div class="ref-list">
+                    <div class="ref-item">Śaṅkarācārya, Brahmasūtra-bhāṣya (Chú giải Kinh Brahma), bản dịch tiếng Anh của Swami Gambhirananda (1965), Brahma Sutra Bhasya of Shankaracharya, Advaita Ashrama, Kolkata.</div>
+                    <div class="ref-item">Śaṅkarācārya, Vivekacūḍāmaṇi (Trí tuệ minh châu kim cương), bản dịch tiếng Anh của Swami Madhavananda (1921), Advaita Ashrama, Kolkata.</div>
+                    <div class="ref-item">Swami Nikhilananda (trans.) (1949), The Mandukya Upanishad with Gaudapada's Karika and Sankara's Commentary, Sri Ramakrishna Math, Chennai.</div>
+                    <div class="ref-item">Radhakrishnan, S. (1929/1999), Indian Philosophy (Vol. 1 & Vol. 2), Oxford University Press, New Delhi.</div>
+                </div>
+            </section>
+
+            <!-- Nhóm 4 -->
+            <section>
+                <h2 class="section-sub-title">4. Sách Chuyên khảo & Giáo trình Nghiên cứu</h2>
+                <div class="ref-list">
+                    <div class="ref-item">Lê Xuân Khoa (1972), Nhập môn Triết học Ấn Độ, NXB Trung tâm Học liệu Bộ Giáo dục, Sài Gòn.</div>
+                    <div class="ref-item">Thích Chơn Thiện (1999), Pāli Phật học Đại cương, NXB Tôn Giáo, Hà Nội.</div>
+                    <div class="ref-item">Thích Quảng Độ (1975/2002), Triết học Ấn Độ, Tập I & II, NXB Tôn Giáo, Hà Nội.</div>
+                    <div class="ref-item">Viện Triết học (2004), Lịch sử Triết học Phương Đông, NXB Chính trị Quốc gia, Hà Nội.</div>
+                </div>
+            </section>
+        </article>
+
+        <footer>
+            <p>© Giao diện đọc tiểu luận trực tuyến • Cosmic Theme</p>
+        </footer>
+    </div>
+
+</body>
+</html>

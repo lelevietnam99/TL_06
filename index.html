@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiểu Luận Triết Học: Thân Và Cảnh Trong Cõi Huyễn Mộng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #050714;
+            background-image: 
+                radial-gradient(circle at 20% 15%, rgba(112, 0, 255, 0.25) 0%, transparent 45%),
+                radial-gradient(circle at 80% 75%, rgba(0, 212, 255, 0.2) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(15, 10, 35, 0.95) 0%, #03050c 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            line-height: 1.8;
+            padding: 50px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng nền sao vũ trụ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 190px, rgba(168, 85, 247, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 310px 250px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 450px 120px, rgba(56, 189, 248, 0.9), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 500px 500px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Trang Chủ */
+        header.portal-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 45px 35px;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 35px rgba(112, 0, 255, 0.18);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1.essay-main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 45%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
+            line-height: 1.35;
+        }
+
+        p.essay-subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 780px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .poem-preview {
+            margin-top: 25px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #c084fc;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Nav Cards Grid */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .nav-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #a855f7, #38bdf8);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(168, 85, 247, 0.4);
+            background: rgba(20, 30, 55, 0.75);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .nav-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-number {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #38bdf8;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-number-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #38bdf8;
+            font-size: 0.85rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.65;
+            margin-bottom: 22px;
+        }
+
+        .card-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #c084fc;
+            margin-top: auto;
+            transition: color 0.3s ease, gap 0.3s ease;
+        }
+
+        .nav-card:hover .card-action {
+            color: #38bdf8;
+            gap: 12px;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.88rem;
+            margin-top: 55px;
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            header.portal-header {
+                padding: 30px 20px;
+            }
+            h1.essay-main-title {
+                font-size: 1.7rem;
+            }
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Portal -->
+        <header class="portal-header">
+            <span class="badge">CỔNG ĐIỀU HƯỚNG TIỂU LUẬN</span>
+            <h1 class="essay-main-title">THÂN VÀ CẢNH TRONG CÕI HUYỄN MỘNG</h1>
+            <p class="essay-subtitle">
+                Đối chiếu Hiện tượng luận & Bản thể luận Bất nhị giữa học thuyết <strong>Vivartavāda (Advaita Vedānta)</strong> của Śaṅkarācārya và bài kệ <strong>"Mộng"</strong> của Thiền sư Thích Thanh Từ.
+            </p>
+            <div class="poem-preview">
+                “Gá thân mộng • Dạo cảnh mộng • Biết được mộng • Tỉnh cơn mộng”
+            </div>
+        </header>
+
+        <!-- Navigation Grid Links -->
+        <main class="nav-grid">
+
+            <!-- Card 1: Sườn Bài -->
+            <a href="index1.html" class="nav-card">
+                <div>
+                    <div class="card-number">
+                        <span class="card-number-badge">01</span>
+                        <span>CẤU TRÚC ĐỀ TÀI</span>
+                    </div>
+                    <h2 class="card-title">Sườn Bài Tiểu Luận</h2>
+                    <p class="card-desc">
+                        Tổng hợp các hướng tiếp cận đề tài: Bản thể luận, Phương pháp thực hành chuyển hóa nhận thức và Hiện tượng luận về Thân - Cảnh.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <span>Xem sườn bài</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- Card 2: Mở Bài -->
+            <a href="index2.html" class="nav-card">
+                <div>
+                    <div class="card-number">
+                        <span class="card-number-badge">02</span>
+                        <span>PHẦN I</span>
+                    </div>
+                    <h2 class="card-title">Mở Bài</h2>
+                    <p class="card-desc">
+                        Đặt vấn đề về bản chất thực tại tối hậu, giới thiệu học thuyết Vivartavāda, bài kệ "Mộng" và thiết lập luận đề nghiên cứu của tiểu luận.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <span>Đọc Mở bài</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- Card 3: Chương 1 -->
+            <a href="index3.html" class="nav-card">
+                <div>
+                    <div class="card-number">
+                        <span class="card-number-badge">03</span>
+                        <span>PHẦN II • CHƯƠNG 1</span>
+                    </div>
+                    <h2 class="card-title">Học Thuyết Vivartavāda (Śaṅkarācārya)</h2>
+                    <p class="card-desc">
+                        Phân tích Nirguṇa Brahman, cơ chế ảo hóa Māyā, học thuyết biến dịch huyễn giả Vivarta, ẩn dụ "Sợi dây tưởng con rắn" và 3 cấp độ Thực tại Sattā.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <span>Đọc Chương 1</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- Card 4: Chương 2 -->
+            <a href="index4.html" class="nav-card">
+                <div>
+                    <div class="card-number">
+                        <span class="card-number-badge">04</span>
+                        <span>PHẦN II • CHƯƠNG 2</span>
+                    </div>
+                    <h2 class="card-title">Quan Điểm Thiền Học Thích Thanh Từ</h2>
+                    <p class="card-desc">
+                        Giải phẫu "Gá thân mộng, Dạo cảnh mộng", phương pháp thiền quán "Biết mộng không theo", sự thức tỉnh Tánh giác và tinh thần Bồ-tát hạnh.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <span>Đọc Chương 2</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- Card 5: Chương 3 -->
+            <a href="index5.html" class="nav-card">
+                <div>
+                    <div class="card-number">
+                        <span class="card-number-badge">05</span>
+                        <span>PHẦN II • CHƯƠNG 3</span>
+                    </div>
+                    <h2 class="card-title">So Sánh Đối Chiếu & Tổng Hợp</h2>
+                    <p class="card-desc">
+                        Phân tích điểm tương đồng, điểm khác biệt căn bản về bản thể luận (Đại ngã vs. Vô ngã Tánh Không) và bảng so sánh tổng hợp chi tiết.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <span>Đọc Chương 3</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+            <!-- Card 6: Kết Bài & Tài Liệu Tham Khảo -->
+            <a href="index6.html" class="nav-card">
+                <div>
+                    <div class="card-number">
+                        <span class="card-number-badge">06</span>
+                        <span>PHẦN III & IV</span>
+                    </div>
+                    <h2 class="card-title">Kết Bài & Thư Mục Nguồn</h2>
+                    <p class="card-desc">
+                        Tổng kết kết quả nghiên cứu, giá trị ứng dụng chuyển hóa nhân sinh trong đời sống hiện đại và danh mục Tài liệu tham khảo học thuật.
+                    </p>
+                </div>
+                <div class="card-action">
+                    <span>Đọc Kết bài & Thư mục</span>
+                    <span>➔</span>
+                </div>
+            </a>
+
+        </main>
+
+        <footer>
+            <p>© Giao diện đọc tiểu luận trực tuyến • Cosmic Theme Portal Index</p>
+        </footer>
+    </div>
+
+</body>
+</html>

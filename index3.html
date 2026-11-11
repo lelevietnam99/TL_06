@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 1: Hệ Thống Ẩn Dụ Huyễn Ảo - Sườn Bài 6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #050714;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(112, 0, 255, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 212, 255, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 10, 35, 0.95) 0%, #03050c 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            line-height: 1.85;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng nền sao vũ trụ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 190px, rgba(168, 85, 247, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 310px 250px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 450px 120px, rgba(56, 189, 248, 0.9), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 500px 500px;
+            opacity: 0.65;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Essay Card */
+        .essay-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(112, 0, 255, 0.12);
+        }
+
+        /* Section Header */
+        .section-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        h1.chapter-main-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            line-height: 1.35;
+        }
+
+        h2.section-sub-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin: 35px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3.part-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #c084fc;
+            margin: 22px 0 12px 0;
+        }
+
+        /* Content Paragraphs */
+        p.content-p {
+            font-size: 1.02rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Superscript styling for footnote references */
+        sup {
+            color: #38bdf8;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-left: 2px;
+            cursor: pointer;
+        }
+
+        /* Lists */
+        ul.custom-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 22px;
+        }
+
+        ul.custom-list li {
+            position: relative;
+            padding-left: 26px;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+            font-size: 1.02rem;
+        }
+
+        ul.custom-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-size: 0.85rem;
+            top: 2px;
+        }
+
+        /* Diagram Box */
+        .diagram-container {
+            background: rgba(10, 15, 30, 0.7);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            padding: 28px 20px;
+            margin: 35px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            font-family: monospace;
+            font-size: 0.88rem;
+            color: #c084fc;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: rgba(112, 0, 255, 0.2);
+            color: #38bdf8;
+            padding: 14px 18px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Footnotes Section */
+        .footnotes-section {
+            margin-top: 45px;
+            padding-top: 22px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footnotes-header {
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footnote-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footnote-item {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            line-height: 1.65;
+        }
+
+        .footnote-item::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .essay-card {
+                padding: 25px 20px;
+            }
+            h1.chapter-main-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <article class="essay-card">
+            <span class="section-badge">Nội Dung Chính • Sườn Bài 6</span>
+            <h1 class="chapter-main-title">CHƯƠNG 1: HỆ THỐNG ẨN DỤ HUỄNH ẢO TRONG ADVAITA VEDĀNTA CỦA ŚAṄKARĀCĀRYA</h1>
+
+            <!-- 1.1 -->
+            <section>
+                <h2 class="section-sub-title">1.1. Biểu tượng "Sợi dây - Con rắn" (Rajju-sarpa) và Cơ chế Cưỡng gán (Adhyāsa)</h2>
+                
+                <p class="content-p">
+                    Trong hệ thống triết học Advaita Vedānta (Nhất nguyên vô biệt) do đại sư Śaṅkarācārya (Thương Yết La, 788–820) hệ thống hóa, ngôn ngữ ẩn dụ (Upamā) không đơn thuần mang tính chất trang trí văn học, mà đóng vai trò là một công cụ nhận thức luận Bát-nhã đặc biệt<sup>1</sup>. Nhằm giải thích sự hiện khởi của thế giới hiện tượng tương đối (Vyāvahārika-satya / Jagat) mà không làm tổn hại đến tính chất thuần khiết, bất biến của Bản thể Tuyệt đối Nirguṇa Brahman, Śaṅkarācārya đã xây dựng biểu tượng triết học kinh điển: Ẩn dụ Sợi dây và Con rắn (Rajju-sarpa)<sup>2, 3</sup>.
+                </p>
+
+                <!-- Diagram sơ đồ Cửu gán Rajju-sarpa -->
+                <div class="diagram-container">
+CƠ CHẾ NHẬN THỨC LUẬN "SỢI DÂY - CON RẮN" (RAJJU-SARPA)
+
+BẢN THỂ THỰC TỒN: SỢI DÂY THỪNG ────────► NĂNG LỰC MĀYĀ / BÓNG CHIỀU
+     (Brahman / Ātman)                    (Công năng che đậy Āvaraṇa)
+             │                                        │
+             ▼                                        ▼
+ CƯỠNG GÁN ĐIÊN ĐẢO (Adhyāsa) ────► ẢO ẢNH CON RẮN ĐỘC (Sarpa)
+(Áp đặt thuộc tính thế tục)         (Cõi hiện tượng Jagat / Mithyā)
+             │                                        │
+             ▼                                        ▼
+ PHÁT SINH SỢ HÃI / KHỔ ĐAU   ──► TRÍ TUỆ JÑĀNA CHIẾU SOI (Đèn Bừng Sáng)
+(Trôi lăn sinh tử hiện sinh)      (Con rắn tan, Sợi dây nguyên vẹn)
+                </div>
+
+                <h3 class="part-title">a. Giải mã Cấu trúc Biểu tượng Rajju-sarpa</h3>
+                <p class="content-p">
+                    <strong>Sợi dây thừng (Rajju):</strong> Biểu tượng cho Thực tại Tuyệt đối (Brahman) hay Chân ngã (Ātman)—nền tảng duy nhất hằng tồn, vô sinh vô diệt và chưa từng bị ô nhiễm bởi bất kỳ biến động nào.
+                </p>
+                <p class="content-p">
+                    <strong>Bóng chiều chạng vạng:</strong> Biểu tượng cho bóng tối Vô minh (Avidyā) và năng lực che đậy (Āvaraṇa-śakti) của Māyā.
+                </p>
+                <p class="content-p">
+                    <strong>Con rắn độc (Sarpa):</strong> Biểu tượng cho cõi hiện tượng huyễn mộng (Jagat / Mithyā) cùng thân xác ngũ uẩn vật lý. Con rắn ảo này không phải là tuyệt đối hư vô (Asat), vì nó tạo ra trải nghiệm tâm lý sợ hãi chân thật cho người nhìn; nhưng nó là Mithyā vì hoàn toàn rỗng rang về mặt bản thể tuyệt đối.
+                </p>
+
+                <h3 class="part-title">b. Sự vận hành của Cơ chế Cưỡng gán (Adhyāsa)</h3>
+                <p class="content-p">
+                    Cội nguồn nỗi khổ đau hiện sinh của con người (Jīva) chính là Adhyāsa—cơ chế áp đặt hay cưỡng gán nhầm lẫn giữa Chủ thể thực tồn (Ātman) và Đối tượng huyễn giả (Thân & Cảnh)<sup>3</sup>.
+                </p>
+                <p class="content-p">
+                    Do bóng chiều chạng vạng che lấp (Āvaraṇa), người đi trong đêm nhìn sợi dây cuộn tròn liền phát sinh ảo giác đó là con rắn độc (Vikṣepa). Nỗi sợ hãi, sự run rẩy và hành vi bỏ chạy của người đó hoàn toàn có thật về mặt cảm xúc tâm lý thế tục, dù con rắn độc hoàn toàn không thực tồn.
+                </p>
+                <p class="content-p">
+                    Tương tự, do Adhyāsa, con người lầm tưởng các trạng thái đau đớn, sinh lão bệnh tử của thân xác và sự hơn thua của cõi cảnh là thuộc về Chân ngã Ātman, từ đó tự làm khổ mình trong sinh tử.
+                </p>
+
+                <h3 class="part-title">c. Ý nghĩa Giải thoát của Biểu tượng</h3>
+                <p class="content-p">
+                    Khi ngọn đèn trí tuệ (Jñāna) được thắp sáng, người nhìn nhận ra sợi dây thừng bản thể. Khoảnh khắc ấy, con rắn ảo giác lập tức biến mất mà không cần phải trải qua tiến trình tiêu diệt hay xua đuổi con rắn. Tương tự, khi Trí tuệ Bất nhị bừng sáng, cõi ảo ảnh Māyā bị đập tan; hành giả trực nhận Bản thể Brahman vốn nguyên vẹn bản hữu, đạt đến trạng thái giải thoát đương sinh (Jīvanmukta)<sup>3</sup>.
+                </p>
+            </section>
+
+            <!-- 1.2 -->
+            <section>
+                <h2 class="section-sub-title">1.2. Hệ thống Biểu tượng "Trăng trong nước" (Candra-māyā), "Giấc mộng" (Svapna) và "Bọt nước" (Budbuda)</h2>
+                
+                <p class="content-p">
+                    Bên cạnh biểu tượng Rajju-sarpa, Śaṅkarācārya và dòng chảy Advaita Vedānta đã huy động một quần thể ẩn dụ mỹ học siêu hình nhằm tháo gỡ sự bám chấp vào thế gian hữu hình<sup>3, 5</sup>:
+                </p>
+
+                <!-- Bảng Hệ thống biểu tượng ẩn dụ -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TÊN BIỂU TƯỢNG</th>
+                                <th>BẢN CHẤT HIỆN TƯỢNG</th>
+                                <th>Ý NGHĨA NHẬN THỨC LUẬN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Candra-māyā</strong><br><small>(Trăng trong nước)</small></td>
+                                <td>Một mặt trăng thật trên trời soi bóng vào vô vàn ao hồ, sông suối.</td>
+                                <td>Trực nhận Brahman duy nhất; mọi linh hồn Jīva / Thân-Cảnh chỉ là bóng dáng phản chiếu huyễn mộng.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Svapna</strong><br><small>(Giấc mộng)</small></td>
+                                <td>Giấc mộng khi ngủ do tâm trí (Manas) phóng chiếu Saṃskāra.</td>
+                                <td>Cõi Tỉnh (Jāgrat) thực chất chỉ là giấc mộng giữa ban ngày do Avidyā và Adhyāsa tạo nên.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Budbuda & Kadali</strong><br><small>(Bọt nước & Cây chuối)</small></td>
+                                <td>Bọt nước mau tan; cây chuối bóc từng bẹ không thấy lõi cứng bên trong.</td>
+                                <td>Tính chất duyên sinh, vô thường, không có lõi cứng chắc hay tự tánh cố định nơi cõi hiện tượng.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="part-title">a. Biểu tượng "Trăng trong nước" (Candra-māyā) – Sự thống nhất Bản thể luận</h3>
+                <p class="content-p">
+                    <strong>Hiện tượng luận:</strong> Bầu trời đêm chỉ có một mặt trăng thật duy nhất. Tuy nhiên, khi mặt trăng đó chiếu soi xuống vô số ao, hồ, sông, suối, gáo nước, nó hiện lên thành vô vàn mặt trăng ảo.
+                </p>
+                <p class="content-p">
+                    <strong>Chuyển tải Triết lý:</strong> Śaṅkarācārya sử dụng biểu tượng này để khẳng định: Brahman là duy nhất<sup>3</sup>. Mọi linh hồn cá nhân (Jīva) cùng vô vàn hình tướng Thân uẩn và Cảnh giới thế gian chỉ là những bóng trăng ảo giác bị phân chia bởi các giới hạn phụ thuộc (Upādhi - gáo nước, mặt nước lăn tăn). Khi nước tan hoặc gáo vỡ, bóng trăng biến mất, chỉ còn lại một mặt trăng thật duy nhất trên bầu trời.
+                </p>
+
+                <h3 class="part-title">b. Biểu tượng "Giấc mộng" (Svapna) – Giải phẫu Cấu trúc Ý thức</h3>
+                <p class="content-p">
+                    Trong giấc mộng (Svapna), tâm trí (Manas) phóng chiếu các ấn tượng tích tụ (Saṃskāra), dựng nên một thế giới mộng cảnh với đầy đủ vinh nhược, vui buồn, sống chết. Khi ở trong mộng, người nằm mộng tin chắc đó là thực tại.
+                </p>
+                <p class="content-p">
+                    Śaṅkarācārya chỉ ra rằng: Cõi tỉnh thường nhật (Jāgrat) thực chất cũng chỉ là một giấc mộng dài giữa ban ngày. Khi ngộ nhập trạng thái Siêu việt Turīya (Trạng thái thứ tư / Tánh giác thuần túy), hành giả bừng tỉnh khỏi giấc mộng Vyāvahārika, nhận ra thế giới hiện tượng vốn huyễn giả<sup>5</sup>.
+                </p>
+
+                <h3 class="part-title">c. Biểu tượng "Bọt nước" (Budbuda) và "Cây chuối" (Kadali) – Giải phẫu Tánh Không Duyên khởi</h3>
+                <p class="content-p">
+                    <strong>Bọt nước (Budbuda):</strong> Khởi sinh từ mặt nước, nổi lên trong chốc lát rồi vỡ tan về lại với nước. Thân xác và hoàn cảnh sống của con người cũng mang tính chất chốc lát, mong manh như bọt nước đại dương<sup>4, 6</sup>.
+                </p>
+                <p class="content-p">
+                    <strong>Cây chuối (Kadali):</strong> Khi bóc tách từng bẹ chuối, người ta không thể tìm thấy một cái lõi cây cứng chắc nào bên trong. Tương tự, khi giải phẫu thân ngũ uẩn và cảnh duyên trần, hành giả không thể tìm thấy một Chân ngã tự chủ hay một tự tánh cố định độc lập nào<sup>4, 6</sup>.
+                </p>
+            </section>
+
+            <!-- 1.3 -->
+            <section>
+                <h2 class="section-sub-title">1.3. Giá trị Nhận thức luận và Mỹ học Siêu hình của Hệ thống Ẩn dụ Vedānta</h2>
+                
+                <h3 class="part-title">a. Ngôn ngữ Ẩn dụ như là "Ngón tay chỉ mặt trăng" (Upāya - Phương tiện Giáo hóa)</h3>
+                <p class="content-p">
+                    Mọi hệ thống biểu tượng và ẩn dụ trong Advaita Vedānta không hướng đến mục đích sáng tạo văn học thuần túy, mà mang giá trị phương tiện giáo hóa (Upāya)<sup>1, 4</sup>: Thực tại Tuyệt đối Nirguṇa Brahman vốn vượt ngoài mọi thuộc tính, ngôn từ (Anirvacanīya - bất khả tư nghì). Do đó, ngôn ngữ ẩn dụ đóng vai trò như "chiếc cầu" hay "ngón tay chỉ mặt trăng", giúp tâm thức con người mượn những hình ảnh hữu hình thường nhật để phóng tầm mắt trực nhận Thực tại siêu việt vô hình.
+                </p>
+
+                <h3 class="part-title">b. Tiến trình Phủ định Biện chứng (Via Negativa / Neti, Neti)</h3>
+                <p class="content-p">
+                    Hệ thống ẩn dụ huyễn ảo của Śaṅkarācārya vận hành đồng bộ với phương pháp phủ định Neti, Neti ("Không phải cái này, không phải cái kia")<sup>2</sup>: Con rắn không phải sợi dây (Neti). Bóng trăng trong nước không phải mặt trăng thật (Neti). Cõi mộng không phải thực tại tỉnh giác (Neti).
+                </p>
+
+                <h3 class="part-title">c. Quy hướng về Bản thể Đại ngã vĩnh cửu (Nirguṇa Brahman)</h3>
+                <p class="content-p">
+                    Mục đích tối hậu của hệ thống biểu tượng Vedānta là đập tan ảo ảnh Māyā để khẳng định Bản thể Đại ngã. Bằng việc chỉ rõ tính chất huyễn mộng (Mithyā) của thế giới qua các ẩn dụ, Śaṅkarācārya dẫn dắt tâm thức bóc tách mọi lớp vỏ Pañca-kośa, đưa hành giả ngộ nhập mệnh đề cốt tủy: Aham Brahmāsmi ("Ta chính là Brahman")<sup>2, 3, 6</sup>.
+                </p>
+            </section>
+
+            <!-- Footnotes -->
+            <div class="footnotes-section">
+                <div class="footnotes-header">
+                    <span>📌 CHÚ THÍCH & TRÍCH DẪN NGUỒN (FOOTNOTES CHO CHƯƠNG 1 - SƯỜN BÀI 6)</span>
+                </div>
+                <ul class="footnote-list">
+                    <li class="footnote-item" data-num="1">
+                        Lê Xuân Khoa (1972), <em>Nhập môn Triết học Ấn Độ</em>, NXB Trung tâm Học liệu Bộ Giáo dục, Sài Gòn, tr. 185–192; đối chiếu bài giảng "1. Buổi 1 (18-01-2026).mp3" & "2. Buổi 2 (ngày 18-01-2026).mp3".
+                    </li>
+                    <li class="footnote-item" data-num="2">
+                        Śaṅkarācārya, <em>Brahmasūtra-bhāṣya</em> (Chú giải Kinh Brahma), Adhyāya 1, Pāda 1; xem thêm Swami Gambhirananda (dịch) (1965), <em>Brahma Sutra Bhasya of Shankaracharya</em>, Advaita Ashrama, Kolkata, tr. 14–25; đối chiếu bài giảng "2. Buổi 2 (ngày 18-01-2026).mp3" & "3. Buổi 3 (ngày 31-3-2026).mp3".
+                    </li>
+                    <li class="footnote-item" data-num="3">
+                        Śaṅkarācārya, <em>Vivekacūḍāmaṇi</em> (Trí tuệ minh châu kim cương), Kārikā 108–115; đối chiếu bài giảng "2. Buổi 2 (ngày 18-01-2026).mp3", "3. Buổi 3 (ngày 31-3-2026).mp3" & "3. Buổi học ngày 21-9-2026.mp3" (Phân tích hệ thống ẩn dụ Rajju-sarpa, Candra-māyā, công phu Adhyāsa và sự giải thoát Jīvanmukta).
+                    </li>
+                    <li class="footnote-item" data-num="4">
+                        Radhakrishnan, S. (1999), <em>Indian Philosophy</em>, Vol. 2, Oxford University Press, New Delhi, tr. 480–492; đối chiếu bài giảng "2. Buổi học ngày 16-9-2026.mp3".
+                    </li>
+                    <li class="footnote-item" data-num="5">
+                        Swami Nikhilananda (trans.) (1949), <em>The Mandukya Upanishad with Gaudapada's Karika and Sankara's Commentary</em>, Sri Ramakrishna Math, Chennai; đối chiếu bài giảng "2. Buổi 2 (ngày 18-01-2026).mp3" (Giải phẫu các biểu tượng mộng mị Svapna và trạng thái Siêu việt Turīya).
+                    </li>
+                    <li class="footnote-item" data-num="6">
+                        Viện Triết học (2004), <em>Lịch sử Triết học Phương Đông</em>, NXB Chính trị Quốc gia, Hà Nội, tr. 312–318; đối chiếu bài giảng "1. Buổi 1 (18-01-2026).mp3" & "6. Buổi 6 (8-4-2026).mp3".
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <footer>
+            <p>© Giao diện đọc tiểu luận trực tuyến • Cosmic Theme</p>
+        </footer>
+    </div>
+
+</body>
+</html>

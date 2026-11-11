@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chương 2: Cấu Trúc Biểu Tượng "Mộng" - Sườn Bài 6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #050714;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(112, 0, 255, 0.22) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(0, 212, 255, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(15, 10, 35, 0.95) 0%, #03050c 100%);
+            background-attachment: fixed;
+            color: #e2e8f0;
+            line-height: 1.85;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng nền sao vũ trụ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 230px 190px, rgba(168, 85, 247, 0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 310px 250px, #ffffff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 450px 120px, rgba(56, 189, 248, 0.9), rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 500px 500px;
+            opacity: 0.65;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Essay Card */
+        .essay-card {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(112, 0, 255, 0.12);
+        }
+
+        /* Section Header */
+        .section-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        h1.chapter-main-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 50%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            line-height: 1.35;
+        }
+
+        h2.section-sub-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #38bdf8;
+            margin: 35px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3.part-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #c084fc;
+            margin: 22px 0 12px 0;
+        }
+
+        /* Content Paragraphs */
+        p.content-p {
+            font-size: 1.02rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* Superscript styling for footnote references */
+        sup {
+            color: #38bdf8;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-left: 2px;
+            cursor: pointer;
+        }
+
+        /* Poem Quote Box */
+        .poem-quote-box {
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin: 25px auto;
+            max-width: 320px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #f1f5f9;
+            font-style: italic;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Diagram Box */
+        .diagram-container {
+            background: rgba(10, 15, 30, 0.7);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            padding: 28px 20px;
+            margin: 35px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            font-family: monospace;
+            font-size: 0.88rem;
+            color: #c084fc;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.5;
+        }
+
+        /* Table Styling */
+        .table-container {
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: rgba(112, 0, 255, 0.2);
+            color: #38bdf8;
+            padding: 14px 18px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: #cbd5e1;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Footnotes Section */
+        .footnotes-section {
+            margin-top: 45px;
+            padding-top: 22px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footnotes-header {
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footnote-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .footnote-item {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            line-height: 1.65;
+        }
+
+        .footnote-item::before {
+            content: attr(data-num);
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 35px;
+        }
+
+        @media (max-width: 768px) {
+            .essay-card {
+                padding: 25px 20px;
+            }
+            h1.chapter-main-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <article class="essay-card">
+            <span class="section-badge">Nội Dung Chính • Sườn Bài 6</span>
+            <h1 class="chapter-main-title">CHƯƠNG 2: CẤU TRÚC BIỂU TƯỢNG “MỘNG” TRONG THI CA THIỀN HỌC CỦA THIỀN SƯ THÍCH THANH TỪ</h1>
+
+            <!-- 2.1 -->
+            <section>
+                <h2 class="section-sub-title">2.1. Mạng Lưới Biểu Tượng "Mộng" Đa Tầng: Thân mộng, Cảnh mộng, Khách mộng và Lời mộng</h2>
+                
+                <p class="content-p">
+                    Trong lịch sử Thiền học Phật giáo Việt Nam, Thiền sư Thích Thanh Từ—người khôi phục và xiển dương dòng Thiền Trúc Lâm Yên Tử thời hiện đại—đã cô đọng toàn bộ tinh hoa công phu quán chiếu Bát-nhã và tinh thần giải thoát qua bài kệ “Mộng” (sáng tác tại Thiền viện Chân Không, tháng 7 năm 1980)<sup>1</sup>:
+                </p>
+
+                <div class="poem-quote-box">
+                    “Gá thân mộng<br>
+                    Dạo cảnh mộng<br>
+                    Mộng tan rồi<br>
+                    Cười vỡ mộng<br>
+                    Ghi lời mộng<br>
+                    Nhắn khách mộng<br>
+                    Biết được mộng<br>
+                    Tỉnh cơn mộng.”
+                </div>
+
+                <p class="content-p">
+                    Nhìn từ góc độ biểu tượng học và mỹ học Thiền tông, bài kệ không chỉ là một sáng tác thi ca cô đọng mà là một hệ thống mạng lưới biểu tượng đa tầng, giải phẫu trọn vẹn từ thực tại hiện tượng luận đến tiến trình giải thoát tâm lý:
+                </p>
+
+                <!-- Bảng Hệ thống biểu tượng Mộng -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>HỆ THỐNG BIỂU TƯỢNG</th>
+                                <th>BẢN CHẤT HIỆN TƯỢNG LUẬN & THIỀN HỌC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. THÂN MỘNG</strong></td>
+                                <td>Thân uẩn gá mượn duyên hợp (Anātman).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. CẢNH MỘNG</strong></td>
+                                <td>Cảnh trần duyên sinh vô thường.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. KHÁCH MỘNG</strong></td>
+                                <td>Chúng sinh chìm đắm Avidyā/Vipallāsa.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4. LỜI MỘNG</strong></td>
+                                <td>Ngôn ngữ, Kinh sách phương tiện Upāya.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="diagram-container">
+               NỤ CƯỜI NGỘ NHẬP: "CƯỜI VỠ MỘNG"
+        (Sụp đổ hoàn toàn Ngã chấp và Pháp chấp)
+                           │
+                           ▼
+          BỪNG TỈNH HẠNH NGUYỆN BỒ-TÁT
+   ("Ghi lời mộng, Nhắn khách mộng" - Vô sở trụ)
+                </div>
+
+                <h3 class="part-title">a. Biểu tượng "Thân mộng" (Gá thân mộng) – Giải phẫu tính Duyên khởi và Vô ngã của Ngũ uẩn</h3>
+                <p class="content-p">
+                    <strong>Bản chất gá mượn tạm thời:</strong> Động từ “Gá” kết hợp với biểu tượng “thân mộng” là một đòn đập sắc bén vào thái độ chấp thật nơi thể xác. Thân xác ngũ uẩn (sắc, thọ, tưởng, hành, thức) không phải là một Chân ngã vĩnh cửu hay túp lều sở hữu cố định, mà chỉ là một chốn ở trọ tạm thời của dòng chảy tâm thức<sup>1</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Quán chiếu Vô ngã (Anātman):</strong> Thân thể này vận hành do sự duyên hợp của bốn đại (đất, nước, gió, lửa); khi hết duyên thì phân rã về với cát bụi. Quán chiếu "Thân mộng" giúp hành giả cởi bỏ ngã chấp (Ngã kiến / Ngã mạn), tháo gỡ sự lo âu hiện sinh và nỗi sợ hãi trước quy luật sinh, lão, bệnh, tử<sup>1</sup>.
+                </p>
+
+                <h3 class="part-title">b. Biểu tượng "Cảnh mộng" (Dạo cảnh mộng) – Hiện tượng luận về Cảnh trần vô thường</h3>
+                <p class="content-p">
+                    <strong>Hiện tượng luận Cảnh trần:</strong> "Cảnh" đại diện cho toàn bộ môi trường sống, hoàn cảnh xã hội và các đối tượng nhận thức bên ngoài (Sở tri). Toàn bộ cõi cảnh với vô vàn biến động hơn thua, vinh nhược, được mất đều vận hành theo quy luật Duyên khởi (Paṭiccasamuppāda)<sup>3, 4</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Biểu tượng Cảnh mộng:</strong> Thiền sư ví cảnh đời như giấc mộng: Khi đang mộng thì thấy có thực, nhưng khi tỉnh giấc hoàn toàn không thể nắm bắt hay tìm lại dấu vết. Sự nhận diện này giúp hành giả đập tan pháp chấp, không bị xoay chuyển bởi các biến động thế gian<sup>1</sup>.
+                </p>
+
+                <h3 class="part-title">c. Biểu tượng "Khách mộng" (Nhắn khách mộng) – Lăng kính Tâm lý học về Chúng sinh vô minh</h3>
+                <p class="content-p">
+                    <strong>Cội nguồn chìm đắm:</strong> "Khách mộng" là hình ảnh biểu tượng đại diện cho chúng sinh đang trôi lăn trong sinh tử. Do bị che đậy bởi bóng tối Vô minh (Avidyā - nguyên nhân gốc ngầm rỉ Mūla-kāraṇa) và bị chi phối bởi các Điên đảo nhận thức (Vipallāsa - kết quả sinh khởi Phala), chúng sinh lầm tưởng Thân uẩn và Cảnh trần là thực tồn, từ đó phát sinh kiết xử (Saṃyojana) và lậu hoặc (Āsava) trói buộc<sup>3, 4, 6</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Khách du ngoạn mê lầm:</strong> Chúng sinh giống như vị khách đi trong đêm mộng, tự tạo ra xiềng xích nỗi đau cho mình vì mải miết đuổi theo những bóng hình huyễn hóa<sup>1</sup>.
+                </p>
+
+                <h3 class="part-title">d. Biểu tượng "Lời mộng" (Ghi lời mộng) – Ngôn ngữ như chiếc cầu Phương tiện (Upāya)</h3>
+                <p class="content-p">
+                    <strong>Bản chất hiện tượng luận của Ngôn ngữ:</strong> Thiền sư Thích Thanh Từ nhìn nhận thẳng thắn rằng mọi ngôn ngữ, kinh sách, bài kệ hay phương tiện giáo hóa—xét về mặt tục đế (Vyāvahārika)—vẫn nằm trong cõi huyễn mộng (“lời mộng”)<sup>6</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Chiếc cầu Phương tiện (Upāya):</strong> Tuy ngôn ngữ chỉ là "ngón tay chỉ mặt trăng", nhưng nếu không có "lời mộng" phương tiện thì người trong mộng không thể có manh mối để thức tỉnh. Do đó, bậc ngộ đạo mượn ngôn ngữ mộng để làm công tiện giáo hóa mà không bị bám chấp vào ngôn từ<sup>6</sup>.
+                </p>
+            </section>
+
+            <!-- 2.2 -->
+            <section>
+                <h2 class="section-sub-title">2.2. Tiến Trình Chuyển Hóa Nhận Thức: Từ "Nhận Diện Mộng" ("Biết được mộng") đến Bừng Tỉnh Hiện Tiền ("Tỉnh cơn mộng")</h2>
+                
+                <p class="content-p">
+                    Trọng tâm thực hành Thiền tông dưới sự hướng dẫn của Thiền sư Thích Thanh Từ nằm ở sự chuyển hóa nhận thức luận vô cùng trực tiếp:
+                </p>
+
+                <h3 class="part-title">a. Công phu "Biết được mộng" – Tông chỉ "Biết vọng không theo" và Phản quang Tự kỷ</h3>
+                <p class="content-p">
+                    <strong>Xoay ánh sáng chiếu soi quay lại nhìn tâm:</strong> Thiền sư không chủ trương dùng tâm đè nén tâm hay dùng tư duy biện chứng đập phá vọng niệm. Công phu cốt tủy là Phản quang tự kỷ—xoay nhận thức trở lại chiếu soi trực tiếp vào các chuyển động tâm lý của chính mình<sup>2</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Thiết lập khoảng cách nhận thức:</strong> Thiền sư phân định sắc nét giữa Vọng niệm (Mộng cảnh sinh diệt vô thường) và Tánh "Biết" (Tánh giác bản hữu hằng thuần tịnh). Khi mộng niệm hay suy nghĩ khởi lên, hành giả chỉ cần nhận diện như thực (Yoniso manasikāra - như lý tác ý): “Biết” nó là vọng, là mộng ("Biết được mộng")<sup>1, 4, 6</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Cơ chế "Thấy vọng không theo":</strong> Ngay khoảnh khắc Tánh "Biết" chiếu soi, do không được tiếp tục cung cấp năng lượng bám chấp tâm lý (không theo), vọng niệm tự động vỡ tan và rút lui mà không cần trải qua tiến trình tiêu diệt phức tạp<sup>2</sup>.
+                </p>
+
+                <!-- Diagram sơ đồ Tiến trình thức tỉnh -->
+                <div class="diagram-container">
+TIẾN TRÌNH THỨC TỈNH VÀ BỪNG SÁNG TÁNH GIÁC
+
+PHẢN QUANG TỰ KỶ ──────► TÁNH GIÁC CHIẾU SOI ──────► VỌNG NIỆM TỰ VỠ TAN
+(Xoay nhận thức lại)       ("Biết được mộng")        (Không theo mộng niệm)
+                                                                │
+                                                                ▼
+CẢI TẠO LĂNG KÍNH ◄────────────────────────────────── BỪNG TỈNH HIỆN TIỀN
+(Tháo gỡ lậu hoặc Āsava)                               ("Tỉnh cơn mộng")
+                </div>
+
+                <h3 class="part-title">b. Trạng thái "Tỉnh cơn mộng" – Bừng sáng Tánh giác Bản hữu</h3>
+                <p class="content-p">
+                    Sự "Tỉnh cơn mộng" không phải là sự đào thoát sang một cõi giới siêu hình xa xôi, mà chính là sự "trở về" trực nhận Tánh giác chân thật vốn sẵn có ngàn đời ngay nơi thân xác hiện tại. Lăng kính nhìn thế giới được chuyển hóa triệt để: đập tan lậu hoặc ngầm rỉ (Āsava) và các điên đảo nhận thức (Vipallāsa), đưa hành giả sống tự tại giữa lòng thực tại hiện tiền<sup>1, 4, 6</sup>.
+                </p>
+            </section>
+
+            <!-- 2.3 -->
+            <section>
+                <h2 class="section-sub-title">2.3. Nụ Cười Thiền “Cười Vỡ Mộng”: Nụ Cười Ngộ Nhập và Tinh Thần Dấn Thân Bồ-tát Hạnh</h2>
+                
+                <p class="content-p">
+                    Đỉnh cao mỹ học và tâm lý học Thiền tông trong bài kệ được thể hiện qua nụ cười ngộ nhập và định hướng thái độ dấn thân nhập thế:
+                </p>
+
+                <h3 class="part-title">a. Nụ cười Thiền "Cười vỡ mộng" – Sự sụp đổ của Ngã chấp và Pháp chấp</h3>
+                <p class="content-p">
+                    <strong>Nụ cười giải thoát hiện sinh:</strong> Khi cơn mộng nhận thức khép lại, bậc ngộ đạo cất lên nụ “Cười vỡ mộng”. Nụ cười thể hiện sự an lạc, nhẹ nhõm tột cùng khi nhận ra bao lâu nay mình tự làm khổ mình vì đuổi theo những bóng hình mộng ảo nơi Thân và Cảnh<sup>5</sup>.
+                </p>
+
+                <p class="content-p">
+                    <strong>Đập tan cấu trúc bám chấp:</strong> Sự "vỡ mộng" đánh dấu mốc sụp đổ hoàn toàn của cả ngã chấp lẫn pháp chấp. Năng lượng tâm lý bị trói buộc trong sự lo âu và bám chấp được giải phóng trọn vẹn, trả tâm thức về với trạng thái vô ngã (Anātman), rỗng rang và tự tại<sup>5</sup>.
+                </p>
+
+                <h3 class="part-title">b. Tinh thần Bồ-tát Hạnh "Thuyền mộng qua sông mộng" (Ghi lời mộng, Nhắn khách mộng)</h3>
+                <p class="content-p">
+                    Bài kệ mở ra chiều kích Bồ-tát hạnh dấn thân nhập thế sâu sắc của Thiền học Việt Nam<sup>6</sup>: Bậc thức tỉnh không rút lui vào cõi tịch diệt cô độc, mà quay trở lại cõi đời, dùng ngôn ngữ mộng ("Ghi lời mộng") để cất tiếng gọi thức tỉnh chúng sinh ("Nhắn khách mộng").
+                </p>
+
+                <p class="content-p">
+                    <strong>Thái độ Vô sở trụ:</strong> Hành giả dấn thân làm tất cả mọi việc Phật sự và nghĩa vụ thế gian nhưng với tâm thái dạo chơi tự tại ("Dạo cảnh mộng"), giống như "Thuyền mộng qua sông mộng"—phụng sự hết lòng nhưng tâm hoàn toàn không bị ngã chấp, thành bại hay danh lợi trói buộc<sup>6</sup>.
+                </p>
+            </section>
+
+            <!-- Footnotes -->
+            <div class="footnotes-section">
+                <div class="footnotes-header">
+                    <span>📌 CHÚ THÍCH & TRÍCH DẪN NGUỒN (FOOTNOTES CHO CHƯƠNG 2 - SƯỜN BÀI 6)</span>
+                </div>
+                <ul class="footnote-list">
+                    <li class="footnote-item" data-num="1">
+                        Thiền sư Thích Thanh Từ (1980), Bài kệ "Mộng", khắc tại Thiền viện Chân Không, Bà Rịa - Vũng Tàu, sáng tác tháng 7/1980; đối chiếu bài giảng "3. Buổi học ngày 21-9-2026.mp3" & "3. Buổi 3 (ngày 31-3-2026).mp3" (Quán chiếu bản chất Duyên khởi và tính chất huyễn mộng của Thân uẩn và Cảnh giới).
+                    </li>
+                    <li class="footnote-item" data-num="2">
+                        Thiền sư Thích Thanh Từ (1997), Bí quyết tu thiền, NXB Tôn Giáo, Hà Nội, tr. 35–48; đối chiếu bài giảng "1. Buổi 1 (18-01-2026).mp3" (Phân tích tông chỉ "Biết vọng không theo", công phu Phản quang tự kỷ và sự nhận diện Tánh "Biết" chiếu soi).
+                    </li>
+                    <li class="footnote-item" data-num="3">
+                        Thích Chơn Thiện (1999), Pāli Phật học Đại cương, NXB Tôn Giáo, Hà Nội, tr. 84–96; đối chiếu bài giảng "4b. Buổi học ngày 23-9-2026.mp3" & "3. Buổi 3 (ngày 31-3-2026).mp3" (Phân định ranh giới giữa Vô minh Avidyā - nguyên nhân gốc Mūla-kāraṇa và Điên đảo vọng tưởng Vipallāsa - kết quả sinh khởi Phala; phê bình việc đồng nhất hai khái niệm dẫn đến sai lầm Hữu quả luận Sātkāryavāda).
+                    </li>
+                    <li class="footnote-item" data-num="4">
+                        Thích Minh Châu (dịch) (2012), Kinh Trung Bộ (Majjhima Nikāya), Kinh Tất Cả Lậu Hoặc (Sabbāsava Sutta, số 2) & Kinh Chánh Tri Kiến (Sammādiṭṭhi Sutta, số 9), NXB Tôn Giáo, Hà Nội; đối chiếu bài giảng "3. Buổi 3 (ngày 31-3-2026).mp3", "4b. Buổi học ngày 23-9-2026.mp3" & "1. Buổi 1 (18-01-2026).mp3" (Phương pháp đoạn trừ lậu hoặc và vọng tưởng nhờ Như lý tác ý - Yoniso manasikāra).
+                    </li>
+                    <li class="footnote-item" data-num="5">
+                        Thiền sư Thích Thanh Từ (2005), Thiền sư Việt Nam, NXB Tôn Giáo, Hà Nội, tr. 112–118; đối chiếu bài giảng "3. Buổi học ngày 21-9-2026.mp3" (Ý nghĩa nụ cười ngộ nhập "Cười vỡ mộng"—sự sụp đổ của ngã chấp và pháp chấp).
+                    </li>
+                    <li class="footnote-item" data-num="6">
+                        Thích Thanh Từ (giảng giải) (2008), Kinh Kim Cang Bát Nhã Giảng Giải, NXB Tôn Giáo, Hà Nội, tr. 210; đối chiếu bài giảng "3. Buổi học ngày 21-9-2026.mp3" & "3. Buổi 3 (ngày 31-3-2026).mp3" (Phân tích tinh thần Bồ-tát hạnh dấn thân nhập thế "Ghi lời mộng, Nhắn khách mộng"—dùng phương tiện huyễn mộng để thức tỉnh người trong mộng mà tâm hoàn toàn vô sở trụ).
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <footer>
+            <p>© Giao diện đọc tiểu luận trực tuyến • Cosmic Theme</p>
+        </footer>
+    </div>
+
+</body>
+</html> 
